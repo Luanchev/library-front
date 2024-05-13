@@ -1,0 +1,44 @@
+<h2 class="mb-5">Nuevo Libro</h2>
+
+<div class="row row-cols-3 justify-content-center">
+  <form [formGroup]="form" (ngSubmit)="create()">
+
+    <div class="mb-3">
+      <label for="titulo">Titulo</label>
+      <input id="titulo" type="text" placeholder="Titulo" class="form-control" formControlName="titulo">
+
+    </div>
+
+    <div class="mb-3">
+      <label for="autor">Autor</label>
+      <input id="autor" type="text" placeholder="Autor" class="form-control" formControlName="autor">
+    </div>
+
+    <div class="mb-3">
+      <label for="anio_publicacion">Año Publicacion</label>
+      <input id="anio_publicacion" type="text" placeholder="Año Publicacion" class="form-control" formControlName="anio_publicacion">
+    </div>
+
+    <div class="mb-3">
+      <label for="genero">Genero</label>
+      <select id="genero" class="form-control" formControlName="genero">
+        <option value="" disabled selected>Selecciona un genero</option>
+        <option *ngFor="let genero of generos" [value]="genero.id_genero">{{genero.nombre}}</option>
+      </select>
+
+
+    </div>
+
+    <div class="text-end">
+      <button type="button" class="btn btn-primary" routerLink="/">
+        Cancelar
+      </button>
+
+      <button  type="submit" class="btn btn-primary ms-2">
+        Crear Libro
+      </button>
+
+    </div>
+
+  </form>
+</div>

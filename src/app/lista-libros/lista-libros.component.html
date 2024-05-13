@@ -1,0 +1,32 @@
+<h2 class="mb-5 ">Inventario de libros</h2>
+
+<div class="text-end">
+  <button class="btn btn-primary" routerLink="/new">
+    Nuevo libro
+  </button>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>idLibro</th>
+      <th>titulo</th>
+      <th>autor</th>
+      <th>año Publicacion</th>
+      <th>genero</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor= "let libro of libros">
+        <td>{{libro.id_libro}}</td>
+        <td>{{libro.titulo}}</td>
+        <td>{{libro.autor}}</td>
+        <td>{{libro.anio_publicacion | date: 'yyyy-MM-dd' }}</td>
+        <td>{{libro.genero.nombre}}</td>
+        <td></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
