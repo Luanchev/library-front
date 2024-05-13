@@ -1,7 +1,7 @@
 <h2 class="mb-5">Nuevo Libro</h2>
 
 <div class="row row-cols-3 justify-content-center">
-  <form [formGroup]="form" (ngSubmit)="create()">
+  <form (ngSubmit)="create()">
 
     <div class="mb-3">
       <label for="titulo">Titulo</label>
@@ -20,13 +20,11 @@
     </div>
 
     <div class="mb-3">
-      <label for="genero">Genero</label>
+      <label for="genero">Género</label>
       <select id="genero" class="form-control" formControlName="genero">
-        <option value="" disabled selected>Selecciona un genero</option>
+        <option value="" disabled selected>Selecciona un género</option>
         <option *ngFor="let genero of generos" [value]="genero.id_genero">{{genero.nombre}}</option>
       </select>
-
-
     </div>
 
     <div class="text-end">

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import LibroFormComponent from './libro-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-import { LibroFormComponent } from './libro-form.component';
 
 describe('LibroFormComponent', () => {
   let component: LibroFormComponent;
@@ -8,7 +10,7 @@ describe('LibroFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LibroFormComponent]
+      imports: [LibroFormComponent, ReactiveFormsModule, CommonModule]
     })
     .compileComponents();
 

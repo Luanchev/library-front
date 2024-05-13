@@ -1,12 +1,13 @@
 import { LibraryService } from './../services/Library.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router} from '@angular/router';
-import { Genero } from '../genero-modelo/genero-modelo.component';
+import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule} from '@angular/router';
+
 
 @Component({
   selector: 'app-libro-form',
   standalone: true,
+  imports: [RouterModule, ReactiveFormsModule],
   templateUrl: './libro-form.component.html',
   styleUrl: './libro-form.component.css'
 })
@@ -14,14 +15,14 @@ import { Genero } from '../genero-modelo/genero-modelo.component';
 
 export  default class LibroFormComponent implements OnInit{
 
-  generos: Genero[] = [];
+  generos: any= [];
 
 
-  form = this.fb.group({
-    titulo: ['', [Validators.required]],
-    autor: ['', [Validators.required]],
-    anio_publicacion: ['', [Validators.required]],
-    genero: ['', [Validators.required]]
+  formLibro : FormGroup= this.fb.group({
+    titulo: ['', Validators.required],
+    autor: ['', Validators.required],
+    anio_publicacion: ['', Validators.required],
+    genero: [0, Validators.required]
   });
 
   constructor(
@@ -31,12 +32,15 @@ export  default class LibroFormComponent implements OnInit{
   ){}
 
   ngOnInit(): void{
-    this.libroService.listGenero().subscribe(response => {
-      this.generos = this.generos;
+    console.log(this.generos)
+    this.libroService.listGenero().toPromise().then(response => {
+      console.log(response);
+      this.generos = response;
     });
+    console.log(this.generos)
   }
   create(){
-    const libro = this.form.value;
+    const libro = this.formLibro.value;
     this.libroService.create(libro).subscribe(()=>{
       this.router.navigate(['/']);
     });
