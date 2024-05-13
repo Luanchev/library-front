@@ -1,7 +1,7 @@
 <h2 class="mb-5">Nuevo Libro</h2>
 
 <div class="row row-cols-3 justify-content-center">
-  <form [formGroup]="formLibro" (submit)="onSaveLibro" >
+  <form [formGroup]="formLibro" (ngSubmit)="create()" >
 
     <div class="mb-3">
       <label for="titulo">Titulo</label>

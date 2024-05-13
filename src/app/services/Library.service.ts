@@ -13,7 +13,7 @@ export class LibraryService {
     return this.http.get('http://localhost:8080/api/v1/library');
   }
   listGenero(){
-    return this.http.get< {value: Genero[]}>('http://localhost:8080/api/v1/genero');
+    return this.http.get< Genero[]>('http://localhost:8080/api/v1/genero');
   }
   get(id_libro: number){
     return this.http.get(`http://localhost:8080/api/v1/librar/getbyid/${id_libro}`);
