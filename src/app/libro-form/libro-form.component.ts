@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { LibraryService } from './../services/Library.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule} from '@angular/router';
 
 
@@ -13,37 +14,28 @@ import { Router, RouterModule} from '@angular/router';
 })
 
 
-export  default class LibroFormComponent implements OnInit{
+export  default class LibroFormComponent {
 
   generos: any= [];
 
 
-  formLibro : FormGroup= this.fb.group({
-    titulo: ['', Validators.required],
-    autor: ['', Validators.required],
-    anio_publicacion: ['', Validators.required],
-    genero: [0, Validators.required]
+  formLibro : FormGroup= new FormGroup({
+    titulo: new FormGroup(''),
+    autor: new FormGroup(''),
+    anio_publicacion: new FormGroup(''),
+    genero: new FormGroup('')
   });
 
-  constructor(
-    private fb : FormBuilder,
-    private router : Router,
-    private libroService : LibraryService
-  ){}
+  constructor(private http: HttpClient){}
 
-  ngOnInit(): void{
-    console.log(this.generos)
-    this.libroService.listGenero().toPromise().then(response => {
-      console.log(response);
-      this.generos = response;
-    });
-    console.log(this.generos)
+  onSaveLibro(){
+    debugger;
+    const obj = this.formLibro.value;
+    this.http.post('http://localhost:8080/api/v1/library/registrarlibro/', obj).subscribe((res:any)=>){
+      alert('Libro creado')
+    }
   }
-  create(){
-    const libro = this.formLibro.value;
-    this.libroService.create(libro).subscribe(()=>{
-      this.router.navigate(['/']);
-    });
-  }
+
+
 
 }
