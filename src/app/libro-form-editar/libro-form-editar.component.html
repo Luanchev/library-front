@@ -1,7 +1,7 @@
-<h2 class="mb-5">Nuevo Libro</h2>
+<h2 class="mb-5">Editar Libro</h2>
 
 <div class="row row-cols-3 justify-content-center">
-  <form [formGroup]="formLibro" (ngSubmit)="create()" >
+  <form [formGroup]="formLibro" (ngSubmit)="update()" >
 
     <div class="mb-3">
       <label for="titulo">Titulo</label>
@@ -33,7 +33,7 @@
       </button>
 
       <button  type="submit" class="btn btn-primary ms-2">
-        Crear Libro
+        Actualizar Libro
       </button>
 
     </div>

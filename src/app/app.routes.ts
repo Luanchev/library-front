@@ -8,7 +8,13 @@ const routes: Routes = [
   {
     path: 'new',
     loadComponent: () => import('./libro-form/libro-form.component')
+  },
+  {
+    path: ':id/edit',
+    loadComponent: () => import('./libro-form-editar/libro-form-editar.component')
   }
-  ];
+
+
+];
 
   export { routes };

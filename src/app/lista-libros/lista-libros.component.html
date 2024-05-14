@@ -1,5 +1,16 @@
 <h2 class="mb-5 ">Inventario de libros</h2>
 
+<div *ngIf="eliminar" class="alert alert-danger" role="alert">
+   {{libro}}
+  <button class="btn btn-danger" (click)="confirmAlert()">
+    Confirmar
+  </button>
+
+  <button class="btn btn-primary" (click)="closeAlert()">
+    Cancelar
+  </button>
+</div>
+
 <div class="text-end">
   <button class="btn btn-primary" routerLink="/new">
     Nuevo libro
@@ -13,6 +24,7 @@
       <th>autor</th>
       <th>año Publicacion</th>
       <th>genero</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -21,12 +33,18 @@
         <td>{{libro.id_libro}}</td>
         <td>{{libro.titulo}}</td>
         <td>{{libro.autor}}</td>
-        <td>{{libro.anio_publicacion | date: 'yyyy-MM-dd' }}</td>
+        <td>{{libro.anio_publicacion | date }}</td>
         <td>{{libro.genero.nombre}}</td>
-        <td></td>
+        <td class=" text-end">
+          <button class="btn btn-primary" [routerLink]="[libro.id_libro+edit]">
+            Editar
+          </button>
+
+          <button class="btn btn-danger" (click)="openAlert(libro.titulo, libro.id_libro)">
+            Eliminar
+          </button>
+        </td>
     </tr>
 
   </tbody>
 </table>
-
-

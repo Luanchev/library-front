@@ -6,10 +6,15 @@ import { Genero } from '../genero-modelo/genero-modelo.component';
 import { CommonModule } from '@angular/common';
 
 
+
 @Component({
   selector: 'app-libro-form',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    CommonModule
+  ],
   templateUrl: './libro-form.component.html',
   styleUrl: './libro-form.component.css'
 })
@@ -38,7 +43,16 @@ export  default class LibroFormComponent implements OnInit{
     });
   }
   create(){
-    const libro = this.formLibro.value;
+    const libro = {
+      "titulo": this.formLibro.value.titulo,
+      "autor": this.formLibro.value.autor,
+      "anio_publicacion": this.formLibro.value.anio_publicacion,
+      "genero": +this.formLibro.value.genero
+    }
+
+
+
+    this.formLibro.value;
     this.libroService.create(libro).subscribe(()=>{
       this.router.navigate(['/']);
     });
